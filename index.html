@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="style.css">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel&display=swap">
+    <style>
+        .glow-on-hover {
+               font-family: 'Cinzel', sans-serif;
+           }
+       body {
+           background-color: black;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           height: 100vh;
+           margin: 0;
+           position: relative;
+       }
+       #canvas-container {
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+       }
+       #canvas {
+           background-size: cover;
+       }
+       .flex-container {
+            position: absolute;
+           transform: translateX(-50%);
+       }
+       #audio {
+           position: absolute;
+           left: 10px;
+       }
+   </style>
+   
+</head>
+<body>
+    <div id="canvas-container">
+        <canvas id="canvas" width="1024" height="600"></canvas>
+        <button class="glow-on-hover" type="button" id="audio">AUDIO</button>
+        <div class="flex-container">
+            <button class="glow-on-hover" type="button" id="play">JOGAR</button>
+            <button class="glow-on-hover" type="button"  id="controls">CONTROLES</button>
+        </div>
+    </div>
+
+    <script>
+        let canvas = document.getElementById('canvas');
+        let ctx = canvas.getContext('2d');
+
+        let img = new Image();
+        img.src = 'img/CAPA.jpg';
+
+        img.onload = function() {
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        };
+
+        var clickSound = new Audio('music/CUIDADO COM A LAPADA TOMA TOMA ( DJ VINICIUS DE MACABU E RUANZINN ) (1).mp4');
+        clickSound.volume = 1;
+
+        // Faça o áudio tocar em loop
+        clickSound.loop = true;
+
+        document.getElementById('audio').addEventListener('click', function() {
+            clickSound.play();
+        });
+
+        document.getElementById('play').addEventListener('click', function() {
+            window.location.href = 'game.html';
+        });
+
+        document.getElementById('controls').addEventListener('click', function() {
+            window.location.href = 'controles.html';
+        });
+    </script>
+</body>
+</html>

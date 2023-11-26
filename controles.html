@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas com Botão</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #myCanvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="1024" height="600"></canvas>
+
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+
+        // Crie o objeto Audio
+        var clickSound = new Audio('music/Bad Meets Evil - Fast Lane (Official Audio).mp3'); // Substitua 'click.mp3' pelo caminho do seu arquivo de áudio
+
+        // Adicione a funcionalidade do botão "Volta" aqui
+        canvas.addEventListener('click', function(event) {
+            var rect = canvas.getBoundingClientRect();
+            var x = event.clientX - rect.left;
+            var y = event.clientY - rect.top;
+
+            // Verifique se o clique foi dentro do botão
+            if (x >= 10 && x <= 90 && y >= canvas.height - 60 && y <= canvas.height - 10) {
+                window.location.href = 'index.html';
+            }
+        });
+
+        // Mude o fundo do canvas para uma imagem
+        var img = new Image();
+        img.src = 'img/teclado.png';
+        img.onload = function() {
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            
+            // Desenhe o botão "Volta"
+            ctx.fillStyle = 'lightgray';
+            ctx.fillRect(10, canvas.height - 60, 80, 50);
+            ctx.fillStyle = 'black';
+            ctx.font = '20px Arial';
+            ctx.fillText('Volta', 20, canvas.height - 30);
+        };
+        
+    </script>
+</body>
+</html>
